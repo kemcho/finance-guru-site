@@ -12,11 +12,8 @@ app.listen(port, () => console.log (`Server running on port ${port}`));
 //connect to our mongodb database via mongoose
 const db = require("./config/keys").mongoURI;
 
-//Todo: fix the db variable that is not readable for now.
-//console.log(db); db for me here is undefined. 
-
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://kunal:kunalpass1@ds211724.mlab.com:11724/devconnector")
+mongoose.connect(db,{useNewUrlParser:true})
     .then(() => console.log("Mongo DB connection success!"))
     .catch((err) => console.log(err))
 
