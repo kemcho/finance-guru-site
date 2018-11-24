@@ -4,6 +4,7 @@ const gravatar = require('gravatar');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const secret = require('../../config/keys');
+const passport = require('passport');
 
 
 // @route   GET api/users/test
@@ -81,6 +82,25 @@ router.post("/login",(req,res) => {
         });
     });
 });
+
+// @route   GET api/user/current
+// @desc    returns current user info if it gets a valid token
+// @access  private method protected by passport authentication
+router.get('/current', 
+    passport.authenticate('jwt', {session:false}), (req,res) => {
+        res.json({ 
+            "id": req.user.id,
+            "email": req.user.email,
+            "avatar": req.user.avatar
+        });
+    }
+);
+
+
+
+
+
+
 
 
 module.exports = router;

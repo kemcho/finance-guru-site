@@ -30,9 +30,19 @@ app.get('/', (req, res) => res.send("Hello World Kunal"));
 
 
 
+
 //import all the resources
 const users = require('./routes/api/users');
 app.use('/api/users', users);
+
+/* add passport, but only after user schema is registered above */
+
+const passport = require('passport');
+app.use(passport.initialize());
+// add passport config
+require('./config/passport')(passport);
+
+
 const profiles = require('./routes/api/profiles');
 app.use('/api/profiles', profiles);
 const posts = require('./routes/api/posts');
