@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken');
 const secret = require('../../config/keys');
 const passport = require('passport');
 
+// Load input validation
+const validateRegisterInput = require('../../validation/register');
 
 // @route   GET api/users/test
 // @desc    test route to see if everything is working fine
@@ -18,10 +20,17 @@ const User = require('../../models/User');
 // @desc    register a new user or throw an error if user exists
 // @access  public
 router.post('/register', (req,res) => {
+    const {errors, isValid} = validateRegisterInput(req.body);
+
+    if(!isValid) {
+        return res.status(400).json(errors);
+    }
+
     User.findOne({email: req.body.email})
         .then( user => {
             if(user) {
-                return res.status(400).json({email: "User Already exists"});
+                errors.email = 'User with this email id already exists';
+                return res.status(400).json(errors);
             } else {
                 //get the avatar of the user
                 const avatar = gravatar.url(req.body.email, {
@@ -39,6 +48,7 @@ router.post('/register', (req,res) => {
 
                 bcryptjs.genSalt(10,(err, salt) => {
                     bcryptjs.hash(newUser.password, salt, (err, hash) => {
+                        //TODO: when there is no user name password, this error thowing crashes the app, lets catch this
                         if(err) throw err;
                         newUser.password = hash;
                         newUser.save()
