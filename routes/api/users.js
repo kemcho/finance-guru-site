@@ -8,6 +8,7 @@ const passport = require('passport');
 
 // Load input validation
 const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
 
 // @route   GET api/users/test
 // @desc    test route to see if everything is working fine
@@ -66,11 +67,16 @@ router.post('/register', (req,res) => {
 // @desc    checks if the user enters correct password and returns a JWT token
 // @access  public
 router.post("/login",(req,res) => {
+    const {errors, isValid} = validateLoginInput(req.body);
+
     const email = req.body.email;
     const password = req.body.password;
 
     User.findOne({email}).then( user => {
-        if(!user) return res.status(404).json({email: 'User not found'});
+        if(!user) {
+            errors.email = "User not found";
+            return res.status(404).json(errors);
+        }
 
         //check plain text password with hashed password
         bcryptjs.compare(password, user.password).then( isMatch => {
@@ -86,7 +92,8 @@ router.post("/login",(req,res) => {
                 });
                 
             } else {
-                return res.status(400).json({password: "invalid password"});
+                errors.password = "invalid password"
+                return res.status(400).json(errors);
             }
 
         });
