@@ -43,7 +43,7 @@ router.post(
         if(!isValid){
             res.status(400).json(errors);
         }
-        
+
         //Get all the data that is sent from the client
         const profileFields = {};
         profileFields.user = req.user.id;
@@ -97,5 +97,61 @@ router.post(
 
     }
 );
+
+// @route   /api/profiles/handle/:handle
+// @desc    get a profile by a handle
+// @access  public
+router.get('/handle/:handle', (req,res) => {
+    const errors = {};
+    Profile.findOne({handle: req.params.handle})
+    .populate('user', ['name','avatar'])
+    .then(profile => {
+        if(!profile){
+            errors.noprofile = "There is no profile for this handle";
+            res.status(404).json(errors);
+        }else{
+            return res.json(profile);
+        }
+    })
+});
+
+// @route   /api/profiles/user/:user_id
+// @desc    get a profile from its user id
+// @access  public
+router.get('/user/:user_id', (req,res) => {
+    const errors = {};
+    Profile.findOne({user: req.params.user_id})
+    .populate('user', ['name','avatar'])
+    .then(profile => {
+        if(!profile){
+            errors.noprofile = "There is no profile for this user_id";
+            res.status(404).json(errors);
+        }else{
+            return res.json(profile);
+        }
+    })
+});
+
+// @route   /api/profiles/all
+// @desc    get all profiles in the database
+// @access  public
+router.get('/all', (req,res) => {
+    const errors = {};
+    Profile.find()
+    .populate('user', ['name','avatar'])
+    .then( profiles => {
+        if(!profiles){
+            errors.noprofile = "there are no profiles in the database";
+        }else{
+            res.json(profiles);
+        }
+    })
+    .catch( err => {
+        errors.error = "error in getting all profiles";
+        res.status(404).json(errors);    
+    });
+
+});
+
 
 module.exports = router;
