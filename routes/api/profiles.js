@@ -6,6 +6,8 @@ const passport = require('passport');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 const validateProfileInput = require('../../validation/profile');
+const validateExperienceInput = require('../../validation/experience');
+const validateEducationInput = require('../../validation/education');
 
 // @route   GET api/profiles/test
 // @desc    test end point to see if this profiles route is working
@@ -151,6 +153,62 @@ router.get('/all', (req,res) => {
         res.status(404).json(errors);    
     });
 
+});
+
+// @route   /api/profiles/experience
+// @desc    post a new experience section to a given user
+// @access  private with jwt auth
+router.post('/experience', passport.authenticate('jwt', {session:false}), (req,res) => {
+
+    //Check if everything is valid?
+    const {errors, isValid} = validateExperienceInput(req.body);
+    if(!isValid){
+        res.status(400).json(errors);
+    }
+
+    Profile.findOne({user: req.user.id})
+     .then(profile => {
+         const newExperience = {
+            title: req.body.title,
+            company: req.body.company,
+            location: req.body.location,
+            from: req.body.from,
+            to: req.body.to,
+            current: req.body.current,
+            description: req.body.description
+         };
+         //unsift adds the object to the front of the array
+         profile.experience.unshift(newExperience);
+         profile.save().then(profile => res.json(profile));
+     })
+});
+
+// @route   /api/profiles/education
+// @desc    post a new education section to a given user
+// @access  private with jwt auth
+router.post('/education', passport.authenticate('jwt', {session:false}), (req,res) => {
+
+    //Check if everything is valid?
+    const {errors, isValid} = validateEducationInput(req.body);
+    if(!isValid){
+        res.status(400).json(errors);
+    }
+
+    Profile.findOne({user: req.user.id})
+     .then(profile => {
+         const newEducation = {
+            school: req.body.school,
+            degree: req.body.degree,
+            fieldOfStudy: req.body.fieldOfStudy,
+            from: req.body.from,
+            to: req.body.to,
+            current: req.body.current,
+            description: req.body.description
+         };
+         //unsift adds the object to the front of the array
+         profile.education.unshift(newEducation);
+         profile.save().then(profile => res.json(profile));
+     })
 });
 
 
