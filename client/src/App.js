@@ -8,8 +8,20 @@ import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import jwt_decode from 'jwt-decode';
 
 import './App.css';
+import setAuthToken from './utils/setAuthToken';
+import { setCurrentUser } from './actions/authActions';
+
+//check for login token and ensure user stays logged in
+if(localStorage.jwtToken){
+  //Set the auth token header for this current page
+  setAuthToken(localStorage.jwtToken);
+  //Set the current user as well from the token in store
+  const decoded = jwt_decode(localStorage.jwtToken);
+  store.dispatch(setCurrentUser(decoded));
+}
 
 
 class App extends Component {

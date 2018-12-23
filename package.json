@@ -8,7 +8,8 @@
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "client-install": "npm install --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "kill": "kill -9 $(lsof -ti tcp:5000)"
   },
   "author": "kunal",
   "license": "MIT",
