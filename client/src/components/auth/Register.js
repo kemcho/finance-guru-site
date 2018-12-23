@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
+
+//withRouter provides access to history object for navigation
+import {withRouter} from 'react-router-dom';
 import classnames from 'classnames';
+
+//connect is used to connect presentation component like current file
+//register component with react store. 
+import {connect} from 'react-redux';
+import {registerUser} from '../../actions/authActions';
 
 class Register extends Component {
   constructor(){
@@ -17,6 +25,14 @@ class Register extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  //when ever props are changed, this lifecycle method gets called.
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.errors){
+      this.setState({errors:nextProps.errors});
+    }
+  }
+  
+
   onChange(e){
     this.setState({[e.target.name]:e.target.value});
   }
@@ -29,15 +45,14 @@ class Register extends Component {
       password:this.state.password,
       password2:this.state.password2
     }
-    axios.post('/api/users/register', newUser)
-    .then(res => console.log(res.data))
-    .catch(err => this.setState({errors: err.response.data}));
+
+    this.props.registerUser(newUser, this.props.history);
   
   }
   
   render() {
     const {errors} = this.state;
-
+    
     return (
     <div className="register">
     <div className="container">
@@ -90,4 +105,21 @@ class Register extends Component {
   }
 }
 
-export default Register;
+
+//React provides an internal mechanism for adding type-checking to components. 
+//React components use a special property named propTypes to setup type-checking.
+Register.propTypes ={
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+}
+
+//mapStateToProps subscribes this component to redux store updates
+//thus mapStateToProps will be called everytime the store is updated 
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+//Here we are basically connecting the registerUser action with current Register component.
+export default connect (mapStateToProps, {registerUser} )(withRouter(Register));

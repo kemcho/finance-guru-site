@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "finance guru",
   "main": "server.js",
-  "scripts": { 
+  "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
@@ -24,6 +24,6 @@
     "validator": "^10.9.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.6"
+    "nodemon": "^1.18.9"
   }
 }
