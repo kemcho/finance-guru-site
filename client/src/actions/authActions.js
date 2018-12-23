@@ -41,3 +41,15 @@ export const setCurrentUser = decoded => {
         payload: decoded
     };
 }
+
+//Logout the current user
+export const logoutUser = () => dispatch => {
+    //remove token from local storage
+    localStorage.removeItem('jwtToken');
+    //remove auth header from current page
+    setAuthToken(false);
+    //remove current user in store
+    dispatch(setCurrentUser({}));
+}
+
+//Todo:fix avatar logo issue, why avatar is not coming back

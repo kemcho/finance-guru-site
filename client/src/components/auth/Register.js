@@ -25,6 +25,12 @@ class Register extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount(){
+    if(this.props.auth.isAuthenticated){
+      this.props.history.push('/dashboard');
+    }
+  }
+
   //when ever props are changed, this lifecycle method gets called.
   componentWillReceiveProps(nextProps) {
     if(nextProps.errors){

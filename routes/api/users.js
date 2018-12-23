@@ -82,7 +82,7 @@ router.post("/login",(req,res) => {
         bcryptjs.compare(password, user.password).then( isMatch => {
             if(isMatch){
                 //send down the signed jason web token back to the client
-                const payload = {id: user.id, name: user.name, avatar: user.gravatar};
+                const payload = {id: user.id, name: user.name, avatar: user.avatar};
 
                 jwt.sign(payload, secret.mySecretKey, {expiresIn: 3600}, (err, token) => {
                     res.json({
