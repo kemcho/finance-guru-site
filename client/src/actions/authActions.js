@@ -50,6 +50,7 @@ export const logoutUser = () => dispatch => {
     setAuthToken(false);
     //remove current user in store
     dispatch(setCurrentUser({}));
+    
 }
 
 //Todo:fix avatar logo issue, why avatar is not coming back
