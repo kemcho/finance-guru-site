@@ -47,3 +47,6 @@ const profiles = require('./routes/api/profiles');
 app.use('/api/profiles', profiles);
 const posts = require('./routes/api/posts');
 app.use('/api/posts', posts);
+
+const transactions = require('./routes/api/transaction');
+app.use('/api/transactions', transactions);
