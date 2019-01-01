@@ -21,8 +21,8 @@ module.exports = function validateTransactionInput(data) {
         errors.price = "Need positive value for price";
     }
 
-    if(!Validator.isLength(data.ticker, {min: 3, max:100})){
-        errors.ticker = "Ticker text should be between 3 and 100 characters max";
+    if(!Validator.isLength(data.ticker, {min: 2, max:100})){
+        errors.ticker = "Ticker text should be between 2 and 100 characters max";
     }
 
     if(Validator.isEmpty(data.ticker)){
