@@ -9,7 +9,9 @@
     "client": "npm start --prefix client",
     "client-install": "npm install --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "kill": "kill -9 $(lsof -ti tcp:5000)"
+    "kill": "kill -9 $(lsof -ti tcp:5000)",
+    "heroku-postbuild":
+      "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "kunal",
   "license": "MIT",

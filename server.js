@@ -3,7 +3,6 @@
 //import the expressjs framework
 const express = require('express');
 
-
 //instanciate the app and start it to listen on a port
 const app = express();
 
@@ -50,3 +49,15 @@ app.use('/api/posts', posts);
 
 const transactions = require('./routes/api/transaction');
 app.use('/api/transactions', transactions);
+
+// node path module helps you get the current directory
+const path = require('path');
+// Server static assets if in production
+if (process.env.NODE_ENV === 'production') {
+    // Set static folder which will be generated from post build step
+    app.use(express.static('client/build'));
+  
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
