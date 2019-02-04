@@ -14,8 +14,7 @@
     "client-install": "npm install --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "kill": "kill -9 $(lsof -ti tcp:5000)",
-    "heroku-postbuild":
-      "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "kunal",
   "license": "MIT",
@@ -26,13 +25,14 @@
     "express": "^4.16.4",
     "gravatar": "^1.6.0",
     "jsonwebtoken": "^8.4.0",
-    "mongoose": "^5.3.12",
+    "mongoose": "^5.4.9",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
-    "validator": "^10.9.0",
+    "terser": "^3.14.1",
+    "validator": "^10.11.0",
     "yahoo-stocks": "^2.0.4"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
-  }  
+  }
 }
