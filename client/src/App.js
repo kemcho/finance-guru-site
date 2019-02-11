@@ -15,7 +15,7 @@ import CreateProfile from './components/create-profile/CreateProfile';
 import CurrentPortfolio from './components/portfolio/CurrentPortfolio';
 import AddExperience from './components/add-credentials/AddExperience';
 import AddEducation from './components/add-credentials/AddEducation';
-import Dashboard2 from './components/dashboard/Dashboard';
+import Dashboard2 from './components/dashboard/Dashboard2';
 
 import './App.css';
 import setAuthToken from './utils/setAuthToken';
