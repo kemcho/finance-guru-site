@@ -4,18 +4,17 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
-    "classnames": "^2.2.6",
-    "concurrently": "^4.1.0",
+    "classnames": "^2.2.5",
     "jwt-decode": "^2.2.0",
-    "moment": "^2.24.0",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1",
-    "react-moment": "^0.8.4",
-    "react-redux": "^6.0.0",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.4",
-    "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "moment": "^2.22.0",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-moment": "^0.7.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,7 +33,7 @@
   ],
   "engines": {
     "node": "11.2.0",
-    "npm": "6.5.0"
+    "npm": "6.7.0"
   },
   "proxy": "http://localhost:5000"
 }

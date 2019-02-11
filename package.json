@@ -5,7 +5,7 @@
   "main": "server.js",
   "engines": {
     "node": "11.2.0",
-    "npm": "6.5.0"
+    "npm": "6.7.0"
   },
   "scripts": {
     "start": "node server.js",
@@ -14,22 +14,22 @@
     "client-install": "npm install --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "kill": "kill -9 $(lsof -ti tcp:5000)",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild":
+      "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "kunal",
   "license": "MIT",
   "dependencies": {
-    "async": "^2.6.1",
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4",
+    "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
+    "express": "^4.16.3",
     "gravatar": "^1.6.0",
-    "jsonwebtoken": "^8.4.0",
-    "mongoose": "^5.4.11",
+    "jsonwebtoken": "^8.2.0",
+    "mongoose": "^5.0.12",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
-    "validator": "^10.11.0",
-    "yahoo-stocks": "^2.0.4"
+    "validator": "^9.4.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
