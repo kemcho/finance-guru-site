@@ -24,7 +24,7 @@ mongoose
   .catch(err => console.log(err));
 
 //Handle your first default request
-// app.get('/', (req, res) => res.send("Hello World Kunal"));
+// app.get("/", (req, res) => res.send("Hello World Kunal"));
 
 //import all the resources
 const users = require("./routes/api/users");
