@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getAllTransactions } from "../../actions/portfolioActions";
 import PropTypes from "prop-types";
-import isEmpty from "../../validations/is-empty";
 import { Table } from "antd";
 
 class CurrentPortfolio extends Component {
