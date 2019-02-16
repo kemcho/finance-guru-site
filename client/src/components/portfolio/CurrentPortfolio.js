@@ -29,18 +29,18 @@ class CurrentPortfolio extends Component {
     const columns = [
       {
         title: "Ticker Name",
-        dataIndex: "Stock Ticker",
-        key: "Stock Ticker"
+        dataIndex: "stockTicker",
+        key: "stockTicker"
       },
       {
         title: "Units",
-        dataIndex: "Units",
-        key: "Units"
+        dataIndex: "units",
+        key: "units"
       },
       {
         title: "Current Price",
-        dataIndex: "Current Price",
-        key: "Current Price"
+        dataIndex: "currentPrice",
+        key: "currentPrice"
       }
     ];
 
@@ -49,7 +49,7 @@ class CurrentPortfolio extends Component {
         <h1>Portfolio</h1>
         <Table
           size="small"
-          rowKey="Stock Ticker"
+          rowKey="id"
           bordered={true}
           pagination={false}
           columns={columns}
