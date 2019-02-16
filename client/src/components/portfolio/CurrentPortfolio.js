@@ -12,19 +12,18 @@ class CurrentPortfolio extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.portfolio) {
-      //todo: remove nested portfolio
-      this.setState({ portfolio: nextProps.portfolio.portfolio });
+      this.setState({ transactions: nextProps.portfolio.transactions });
     }
   }
 
   render() {
-    const { portfolio } = this.props.portfolio;
+    const { transactions } = this.props.portfolio;
     let content;
 
-    if (isEmpty(portfolio)) {
+    if (isEmpty(transactions)) {
       content = "Loading your current portfolio ...";
     } else {
-      const transactions = this.state.portfolio.map(transaction => (
+      const currentTransactions = this.state.transactions.map(transaction => (
         <tr key={transaction.id}>
           <td>{transaction.stockTicker}</td>
           <td>{transaction.units}</td>
@@ -40,7 +39,7 @@ class CurrentPortfolio extends Component {
               <th>Units</th>
               <th>Current Price($)</th>
             </tr>
-            {transactions}
+            {currentTransactions}
           </thead>
         </table>
       );
