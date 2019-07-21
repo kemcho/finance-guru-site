@@ -2,3 +2,6 @@
 package-lock.json
 /config/keys_dev.js
 .vscode/
+
+.DS_Store
+routes/.DS_Store
