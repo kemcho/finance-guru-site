@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getAllTransactions } from "../../actions/portfolioActions";
 import PropTypes from "prop-types";
 import isEmpty from "../../validations/is-empty";
+import { Link } from "react-router-dom";
 
 class CurrentPortfolio extends Component {
   //call action to get all transactions for a users portfolio
@@ -27,7 +28,9 @@ class CurrentPortfolio extends Component {
         <tr key={transaction.id}>
           <td>{transaction.stockTicker}</td>
           <td>{transaction.units}</td>
+          <td>{transaction.price}</td>
           <td>{transaction.currentPrice}</td>
+          <td>{transaction.status}</td>
         </tr>
       ));
 
@@ -37,7 +40,9 @@ class CurrentPortfolio extends Component {
             <tr>
               <th>Ticker</th>
               <th>Units</th>
+              <th>Buy Price($)</th>
               <th>Current Price($)</th>
+              <th>Status</th>
             </tr>
             {currentTransactions}
           </thead>
@@ -47,7 +52,12 @@ class CurrentPortfolio extends Component {
 
     return (
       <div>
-        <h1>Portfolio</h1>
+        <h1>
+          Portfolio
+          <Link to="/add-transactions" className="btn btn-light">
+            Add Transaction
+          </Link>
+        </h1>
         {content}
       </div>
     );

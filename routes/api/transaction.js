@@ -66,8 +66,13 @@ router.get(
                 currentTransactionValue["id"] = transaction.id;
                 currentTransactionValue["stockTicker"] = transaction.ticker;
                 currentTransactionValue["units"] = transaction.units;
+                currentTransactionValue["price"] = transaction.price;
                 currentTransactionValue["currentPrice"] =
                   currentTickerPrice[transaction.ticker];
+                currentTransactionValue["status"] = (
+                  transaction.units *
+                  (currentTickerPrice[transaction.ticker] - transaction.price)
+                ).toFixed(2);
                 currentPortfolio.push(currentTransactionValue);
               });
               res.json(currentPortfolio);
