@@ -30,7 +30,7 @@ class CurrentPortfolio extends Component {
           <td>{transaction.units}</td>
           <td>{transaction.price}</td>
           <td>{transaction.currentPrice}</td>
-          <td>{transaction.status}</td>
+          <td>{transaction.profitLoss}</td>
         </tr>
       ));
 
@@ -42,7 +42,7 @@ class CurrentPortfolio extends Component {
               <th>Units</th>
               <th>Buy Price($)</th>
               <th>Current Price($)</th>
-              <th>Status</th>
+              <th>Profit Loss($)</th>
             </tr>
             {currentTransactions}
           </thead>

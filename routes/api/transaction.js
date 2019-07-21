@@ -69,7 +69,7 @@ router.get(
                 currentTransactionValue["price"] = transaction.price;
                 currentTransactionValue["currentPrice"] =
                   currentTickerPrice[transaction.ticker];
-                currentTransactionValue["status"] = (
+                currentTransactionValue["profitLoss"] = (
                   transaction.units *
                   (currentTickerPrice[transaction.ticker] - transaction.price)
                 ).toFixed(2);
