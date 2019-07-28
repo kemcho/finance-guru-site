@@ -58,13 +58,15 @@ router.get(
 
           //Generate the current portfolio
           const currentPortfolio = [];
-          Transaction.find()
+          Transaction.find({ user: req.user.id })
             .then(transactions => {
               transactions.forEach(transaction => {
                 const currentTransactionValue = {};
 
                 currentTransactionValue["id"] = transaction.id;
-                currentTransactionValue["stockTicker"] = transaction.ticker;
+                currentTransactionValue[
+                  "stockTicker"
+                ] = transaction.ticker.toUpperCase();
                 currentTransactionValue["units"] = transaction.units;
                 currentTransactionValue["price"] = transaction.price;
                 currentTransactionValue["currentPrice"] =
