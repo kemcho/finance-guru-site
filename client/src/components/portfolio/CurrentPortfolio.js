@@ -24,15 +24,17 @@ class CurrentPortfolio extends Component {
     if (isEmpty(transactions)) {
       content = "Loading your current portfolio ...";
     } else {
-      const currentTransactions = this.state.transactions.map(transaction => (
-        <tr key={transaction.id}>
-          <td>{transaction.stockTicker}</td>
-          <td>{transaction.units}</td>
-          <td>{transaction.price}</td>
-          <td>{transaction.currentPrice}</td>
-          <td>{transaction.profitLoss}</td>
-        </tr>
-      ));
+      const currentTransactions = this.props.portfolio.transactions.map(
+        transaction => (
+          <tr key={transaction.id}>
+            <td>{transaction.stockTicker}</td>
+            <td>{transaction.units}</td>
+            <td>{transaction.price}</td>
+            <td>{transaction.currentPrice}</td>
+            <td>{transaction.profitLoss}</td>
+          </tr>
+        )
+      );
 
       content = (
         <table className="table">
