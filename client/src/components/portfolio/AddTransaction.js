@@ -84,9 +84,9 @@ class AddTransaction extends Component {
                 <TextFieldGroup
                   name="date"
                   type="date"
-                  value={this.state.from}
+                  value={this.state.date}
                   onChange={this.onChange}
-                  error={errors.from}
+                  error={errors.date}
                 />
                 <input
                   type="submit"
@@ -103,7 +103,7 @@ class AddTransaction extends Component {
 }
 
 AddTransaction.propTypes = {
-  AddTransaction: PropTypes.func.isRequired,
+  addTransaction: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
