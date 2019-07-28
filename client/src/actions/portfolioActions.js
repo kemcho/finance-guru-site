@@ -17,7 +17,7 @@ export const addTransaction = (expData, history) => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
-        payload: {}
+        payload: err.response.data
       })
     );
 };
